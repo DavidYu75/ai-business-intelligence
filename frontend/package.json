@@ -35,7 +35,7 @@
     "react-beautiful-dnd": "13.1.1",
     "react-grid-layout": "1.4.2",
     "react-resizable-panels": "1.0.5",
-    "react-dropzone": "14.2.3",
+    "react-dropzone": "14.3.8",
     "papaparse": "5.4.1"
   },
   "devDependencies": {
