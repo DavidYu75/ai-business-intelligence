@@ -21,7 +21,25 @@ A comprehensive BI platform that allows non-technical users to query business da
 
 ## Quick Start
 
-### Backend Setup
+### Option 1: Docker (Recommended)
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd realtime-bi
+
+# Start the development environment
+docker-compose up
+
+# Access the application
+# Frontend: http://localhost:3000
+# Backend API: http://localhost:8000
+# API Documentation: http://localhost:8000/docs
+```
+
+### Option 2: Manual Setup
+
+#### Backend Setup
 
 ```bash
 # Clone the repository
@@ -49,7 +67,7 @@ cp env.example .env
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-### Frontend Setup
+#### Frontend Setup
 
 ```bash
 # Navigate to frontend directory
@@ -79,38 +97,46 @@ realtime-bi/
 │   ├── tests/              # Backend tests
 │   ├── alembic/            # Database migrations
 │   ├── requirements/       # Python dependencies
+│   ├── Dockerfile.dev      # Docker development image
 │   └── venv/               # Virtual environment (created locally)
 ├── frontend/               # React Next.js frontend
 │   ├── src/                # Source code
 │   ├── public/             # Static assets
-│   └── tests/              # Frontend tests
+│   ├── tests/              # Frontend tests
+│   └── Dockerfile.dev      # Docker development image
 ├── infrastructure/         # Infrastructure and deployment
 │   ├── k8s/                # Kubernetes manifests
 │   └── terraform/          # Infrastructure as Code
 ├── docs/                   # Documentation
-└── scripts/                # Utility scripts
+├── scripts/                # Utility scripts
+├── docker-compose.yml      # Docker development environment
+├── Makefile                # Development commands
+└── .gitignore              # Git ignore rules
 ```
 
 ## Development
 
 ### Prerequisites
 
+#### For Docker Setup
+- **Docker Desktop** - [Download Docker](https://www.docker.com/products/docker-desktop/)
+- **Git** - [Download Git](https://git-scm.com/)
+
+#### For Manual Setup
 - **Python 3.11+** - [Download Python](https://www.python.org/downloads/)
 - **Node.js 18+** - [Download Node.js](https://nodejs.org/)
 - **PostgreSQL 15** (optional, can use SQLite for development)
 - **Redis** (optional for development)
 
-### Backend Development
+### Technology Stack
 
-The backend uses:
+#### Backend Development
 - **FastAPI** - Modern Python web framework
 - **SQLAlchemy** - Database ORM
-- **Poetry/Virtual Environment** - Dependency management
+- **Virtual Environment/Poetry** - Dependency management
 - **Uvicorn** - ASGI server with hot reload
 
-### Frontend Development
-
-The frontend uses:
+#### Frontend Development
 - **Next.js 14** - React framework
 - **TypeScript** - Type safety
 - **Tailwind CSS** - Utility-first styling
@@ -121,6 +147,9 @@ The frontend uses:
 For development, you can use:
 - **SQLite** (simplest) - Update `DATABASE_URL` in `.env` to `sqlite:///./realtime_bi.db`
 - **PostgreSQL** (recommended) - Install PostgreSQL 15 and create a database
-- **Docker PostgreSQL** - Run PostgreSQL in Docker if you prefer
+- **Docker PostgreSQL** - Automatically included with Docker setup
 
-See [Development Setup Guide](docs/developer/setup.md) for detailed instructions.
+### Setup Guides
+
+- **Docker Setup**: See [Docker Setup Guide](docs/developer/docker-setup.md)
+- **Manual Setup**: See [Development Setup Guide](docs/developer/setup.md)
