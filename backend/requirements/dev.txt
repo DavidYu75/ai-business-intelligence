@@ -1,0 +1,22 @@
+-r base.txt
+
+# Development and Debugging
+ipython==8.18.1
+ipdb==0.13.13
+debugpy==1.8.0
+
+# Code Quality
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0
+mypy==1.7.1
+pre-commit==3.6.0
+
+# Documentation
+mkdocs==1.5.3
+mkdocs-material==9.4.8
+
+# Additional Testing
+pytest-mock==3.12.0
+pytest-xdist==3.5.0
+factory-boy==3.3.0
