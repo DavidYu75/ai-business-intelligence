@@ -153,3 +153,33 @@ For development, you can use:
 
 - **Docker Setup**: See [Docker Setup Guide](docs/developer/docker-setup.md)
 - **Manual Setup**: See [Development Setup Guide](docs/developer/setup.md)
+- **CI/CD Pipeline**: See [CI/CD Documentation](docs/developer/ci-cd.md)
+
+## Quality Assurance
+
+### Code Quality
+- **Linting**: Black, isort, flake8 for Python; ESLint, Prettier for TypeScript
+- **Type Checking**: mypy for Python; TypeScript compiler for frontend
+- **Testing**: pytest with 90% coverage for backend; Jest with 80% coverage for frontend
+- **Security**: Bandit for Python security scanning; Trivy for vulnerability scanning
+
+### CI/CD Pipeline
+- **Automated Testing**: Runs on every push and pull request
+- **Security Scanning**: Dependency and code vulnerability scanning
+- **Docker Image Building**: Automated image building and pushing to registry
+- **Deployment**: Staging and production deployment automation
+
+### Development Commands
+```bash
+# Run full CI/CD pipeline locally
+make ci-cd
+
+# Run specific quality checks
+make lint          # Linting
+make test-backend  # Backend tests
+make test-frontend # Frontend tests
+make security-scan # Security scanning
+
+# Install pre-commit hooks
+make install-hooks
+```
