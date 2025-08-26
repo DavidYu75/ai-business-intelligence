@@ -30,33 +30,30 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 async def root():
     """Root endpoint."""
     return {
         "message": "Real-Time Business Intelligence Platform API",
         "version": "0.1.0",
-        "status": "running"
+        "status": "running",
     }
+
 
 @app.get("/health")
 async def health_check():
     """Health check endpoint for Docker health checks."""
-    return {
-        "status": "healthy",
-        "service": "realtime-bi-backend",
-        "version": "0.1.0"
-    }
+    return {"status": "healthy", "service": "realtime-bi-backend", "version": "0.1.0"}
+
 
 @app.get("/api/v1/health")
 async def api_health_check():
     """API health check endpoint."""
-    return {
-        "status": "healthy",
-        "api_version": "v1",
-        "service": "realtime-bi-backend"
-    }
+    return {"status": "healthy", "api_version": "v1", "service": "realtime-bi-backend"}
+
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)

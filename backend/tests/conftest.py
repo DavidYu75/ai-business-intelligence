@@ -1,6 +1,7 @@
 """
 Pytest configuration and fixtures for backend tests.
 """
+
 import asyncio
 import pytest
 from typing import AsyncGenerator, Generator
@@ -50,15 +51,15 @@ async def test_session(test_engine) -> AsyncGenerator[AsyncSession, None]:
 @pytest.fixture
 async def client(test_session) -> AsyncGenerator[TestClient, None]:
     """Create a test client with overridden dependencies."""
-    
+
     async def override_get_db():
         yield test_session
-    
+
     app.dependency_overrides[get_db] = override_get_db
-    
+
     with TestClient(app) as test_client:
         yield test_client
-    
+
     app.dependency_overrides.clear()
 
 
