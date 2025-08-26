@@ -55,15 +55,3 @@ realtime-bi/
 ├── docs/                   # Documentation
 └── scripts/                # Utility scripts
 ```
-
-## Development
-
-See [Development Guide](docs/development.md) for detailed setup instructions.
-
-## Contributing
-
-See [Contributing Guidelines](docs/contributing.md) for development standards and practices.
-
-## License
-
-[License information]
