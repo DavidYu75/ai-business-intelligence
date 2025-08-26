@@ -17,42 +17,79 @@ This guide will help you set up the development environment for the Real-Time Bu
    cd realtime-bi
    ```
 
-2. **Start the development environment**
+2. **Set up the backend**
    ```bash
-   docker-compose up
+   cd backend
+   python3 -m venv venv
+   source venv/bin/activate  # On macOS/Linux
+   pip install -r requirements/base.txt
+   cp env.example .env
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
    ```
 
-3. **Access the application**
+3. **Set up the frontend** (in a new terminal)
+   ```bash
+   cd frontend
+   npm install
+   cp env.example .env.local
+   npm run dev
+   ```
+
+4. **Access the application**
    - Backend API: http://localhost:8000
    - Frontend: http://localhost:3000
    - API Documentation: http://localhost:8000/docs
 
-## Manual Setup (Alternative)
+## Backend Setup
 
-### Backend Setup
+### Using Virtual Environment (Recommended)
 
 1. **Navigate to backend directory**
    ```bash
    cd backend
    ```
 
-2. **Install Poetry (if not installed)**
+2. **Create virtual environment**
+   ```bash
+   python3 -m venv venv
+   ```
+
+3. **Activate virtual environment**
+   ```bash
+   source venv/bin/activate  # On macOS/Linux
+   # or
+   venv\Scripts\activate     # On Windows
+   ```
+
+4. **Install dependencies**
+   ```bash
+   pip install -r requirements/base.txt
+   ```
+
+5. **Set up environment variables**
+   ```bash
+   cp env.example .env
+   # Edit .env with your configuration
+   ```
+
+6. **Run the backend**
+   ```bash
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+   ```
+
+### Using Poetry (Alternative)
+
+1. **Install Poetry (if not installed)**
    ```bash
    curl -sSL https://install.python-poetry.org | python3 -
    ```
 
-3. **Install dependencies**
+2. **Install dependencies**
    ```bash
-   poetry install
+   poetry install --no-root
    ```
 
-4. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
-
-5. **Run the backend**
+3. **Run the backend**
    ```bash
    poetry run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
    ```
@@ -82,18 +119,17 @@ This guide will help you set up the development environment for the Real-Time Bu
 
 ## Database Setup
 
-The application uses PostgreSQL as the primary database and Redis for caching.
+The application can use different databases for development and production.
 
-### Using Docker (Recommended)
+### Development Database Options
 
-The `docker-compose.yml` file automatically sets up:
-- PostgreSQL 15
-- Redis 7
-- Backend API server
-- Frontend development server
+#### Option 1: SQLite (Simplest)
+Update your `.env` file:
+```env
+DATABASE_URL=sqlite:///./realtime_bi.db
+```
 
-### Manual Database Setup
-
+#### Option 2: PostgreSQL (Recommended)
 1. **Install PostgreSQL 15**
    ```bash
    # macOS (using Homebrew)
@@ -103,7 +139,23 @@ The `docker-compose.yml` file automatically sets up:
    sudo apt-get install postgresql-15
    ```
 
-2. **Install Redis 7**
+2. **Create database**
+   ```sql
+   CREATE DATABASE realtime_bi;
+   CREATE USER realtime_bi_user WITH PASSWORD 'your_password';
+   GRANT ALL PRIVILEGES ON DATABASE realtime_bi TO realtime_bi_user;
+   ```
+
+3. **Update your `.env` file**
+   ```env
+   DATABASE_URL=postgresql+asyncpg://realtime_bi_user:your_password@localhost:5432/realtime_bi
+   ```
+
+### Redis Setup (Optional for Development)
+
+Redis is used for caching and session storage. For development, you can:
+
+1. **Install Redis**
    ```bash
    # macOS (using Homebrew)
    brew install redis
@@ -112,11 +164,14 @@ The `docker-compose.yml` file automatically sets up:
    sudo apt-get install redis-server
    ```
 
-3. **Create database**
-   ```sql
-   CREATE DATABASE realtime_bi;
-   CREATE USER realtime_bi_user WITH PASSWORD 'your_password';
-   GRANT ALL PRIVILEGES ON DATABASE realtime_bi TO realtime_bi_user;
+2. **Start Redis**
+   ```bash
+   redis-server
+   ```
+
+3. **Update your `.env` file**
+   ```env
+   REDIS_URL=redis://localhost:6379
    ```
 
 ## Development Tools
@@ -209,21 +264,26 @@ NEXT_PUBLIC_WS_URL=ws://localhost:8000/ws
 
 1. **Port already in use**
    - Check if ports 8000 or 3000 are already in use
-   - Kill existing processes or change ports in configuration
+   - Kill existing processes: `lsof -ti:8000 | xargs kill -9`
+   - Or change ports in configuration
 
 2. **Database connection issues**
-   - Ensure PostgreSQL is running
+   - Ensure PostgreSQL is running: `brew services start postgresql@15`
    - Check database credentials in .env file
    - Verify database exists and user has proper permissions
 
-3. **Dependency installation issues**
-   - Clear cache: `poetry cache clear --all pypi`
-   - Update Poetry: `poetry self update`
-   - Reinstall dependencies: `poetry install --sync`
+3. **Backend dependency issues**
+   - Recreate virtual environment: `rm -rf venv && python3 -m venv venv`
+   - Reinstall dependencies: `pip install -r requirements/base.txt`
 
 4. **Frontend build issues**
    - Clear Next.js cache: `rm -rf .next`
    - Reinstall node modules: `rm -rf node_modules && npm install`
+
+5. **Virtual environment issues**
+   - Make sure virtual environment is activated: `source venv/bin/activate`
+   - Check Python version: `python --version`
+   - Recreate if needed: `rm -rf venv && python3 -m venv venv`
 
 ### Getting Help
 
