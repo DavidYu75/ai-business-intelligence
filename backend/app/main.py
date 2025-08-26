@@ -2,11 +2,12 @@
 Main FastAPI application entry point for Real-Time BI Platform.
 """
 
+import os
+from typing import List
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-import os
-from typing import List
 
 # Create FastAPI app instance
 app = FastAPI(
