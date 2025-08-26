@@ -17,7 +17,7 @@ alembic = "^1.12.1"
 psycopg2-binary = "^2.9.9"
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
-redis = "^5.0.1"
+redis = "^6.4.0"
 aioredis = "^2.0.1"
 transformers = "^4.35.2"
 torch = "^2.1.1"
