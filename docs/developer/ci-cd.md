@@ -1,5 +1,11 @@
 # CI/CD Pipeline Documentation
 
+> **⚠️ Note: The CI/CD pipeline is temporarily disabled during initial development (Days 1-5).**
+> 
+> The workflow files have been renamed with `.disabled` extension to prevent automatic triggering while we build the core application. They will be re-enabled once the basic application structure is complete and tests have actual code to validate.
+> 
+> To re-enable: `mv .github/workflows/*.yml.disabled .github/workflows/*.yml`
+
 ## Overview
 
 The Real-Time BI Platform uses a comprehensive CI/CD pipeline built with GitHub Actions to ensure code quality, security, and reliable deployments.
