@@ -9,7 +9,7 @@ packages = [{include = "app"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = "^0.104.1"
-uvicorn = {extras = ["standard"], version = "^0.24.0"}
+uvicorn = {extras = ["standard"], version = "^0.38.0"}
 python-multipart = "^0.0.6"
 sqlalchemy = "^2.0.23"
 asyncpg = "^0.29.0"
@@ -17,7 +17,7 @@ alembic = "^1.12.1"
 psycopg2-binary = "^2.9.9"
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
-redis = "^5.0.1"
+redis = "^7.0.0"
 aioredis = "^2.0.1"
 transformers = "^4.35.2"
 torch = "^2.1.1"
@@ -40,7 +40,7 @@ pytest-mock = "^3.12.0"
 pytest-xdist = "^3.5.0"
 factory-boy = "^3.3.0"
 black = "^23.11.0"
-isort = "^5.12.0"
+isort = "^7.0.0"
 flake8 = "^6.1.0"
 mypy = "^1.7.1"
 pre-commit = "^3.6.0"
