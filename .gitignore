@@ -127,8 +127,8 @@ temp/
 *.sqlite
 *.sqlite3
 
-# ML Models
-models/
+# ML Models (root level only)
+/models/
 *.pkl
 *.joblib
 
