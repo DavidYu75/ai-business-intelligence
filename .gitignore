@@ -206,3 +206,4 @@ cython_debug/
 # Project-specific files
 instructions.md
 .cursorrules
+mvp.md
