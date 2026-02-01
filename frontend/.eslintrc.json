@@ -1,8 +1,5 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "@typescript-eslint/recommended"
-  ],
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "rules": {
@@ -12,9 +9,5 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react-hooks/exhaustive-deps": "warn"
   },
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
-  }
+  "env": { "browser": true, "es2021": true, "node": true }
 }
