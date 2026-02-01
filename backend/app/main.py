@@ -2,12 +2,14 @@
 Main FastAPI application entry point for Real-Time BI Platform.
 """
 
-import os
-from typing import List
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+
+from app.api import api_router
+from app.core.config import settings
 
 # Create FastAPI app instance
 app = FastAPI(
@@ -19,17 +21,16 @@ app = FastAPI(
 )
 
 # Configure CORS
-origins = os.getenv("BACKEND_CORS_ORIGINS", '["http://localhost:3000"]')
-if isinstance(origins, str):
-    origins = eval(origins)  # Convert string to list
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=settings.BACKEND_CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include API routes
+app.include_router(api_router, prefix=settings.API_V1_STR)
 
 
 @app.get("/")
