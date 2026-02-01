@@ -1,17 +1,17 @@
 """
 Pytest configuration and fixtures for backend tests.
 """
+
 import asyncio
-import pytest
 from typing import AsyncGenerator, Generator
+
+import pytest
+from app.core.config import settings
+from app.core.database import get_db
+from app.main import app
 from fastapi.testclient import TestClient
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-
-from app.main import app
-from app.core.database import get_db
-from app.core.config import settings
-
 
 # Test database URL
 TEST_DATABASE_URL = "postgresql+asyncpg://postgres:postgres@localhost:5432/test_db"
@@ -50,15 +50,15 @@ async def test_session(test_engine) -> AsyncGenerator[AsyncSession, None]:
 @pytest.fixture
 async def client(test_session) -> AsyncGenerator[TestClient, None]:
     """Create a test client with overridden dependencies."""
-    
+
     async def override_get_db():
         yield test_session
-    
+
     app.dependency_overrides[get_db] = override_get_db
-    
+
     with TestClient(app) as test_client:
         yield test_client
-    
+
     app.dependency_overrides.clear()
 
 

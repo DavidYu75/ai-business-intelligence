@@ -169,6 +169,8 @@ For development, you can use:
 - **Docker Image Building**: Automated image building and pushing to registry
 - **Deployment**: Staging and production deployment automation
 
+> **⚠️ Note: CI/CD pipeline is temporarily disabled during initial development (Days 1-5).**
+
 ### Development Commands
 ```bash
 # Run full CI/CD pipeline locally
