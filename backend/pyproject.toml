@@ -19,7 +19,7 @@ python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 redis = "^7.0.0"
 aioredis = "^2.0.1"
-transformers = "^4.35.2"
+transformers = "^5.0.0"
 torch = "^2.1.1"
 spacy = "^3.7.2"
 numpy = "^1.24.3"
