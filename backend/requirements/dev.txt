@@ -3,7 +3,7 @@
 # Development and Debugging
 ipython==8.18.1
 ipdb==0.13.13
-debugpy==1.8.0
+debugpy==1.8.20
 
 # Code Quality
 black==23.11.0
