@@ -70,9 +70,9 @@ class Settings(BaseSettings):
     # Logging
     LOG_LEVEL: str = Field(default="INFO")
 
-    # ML/NLP (optional during early development)
-    HUGGINGFACE_CACHE_DIR: Optional[str] = Field(default=None)
-    SPACY_MODEL: str = Field(default="en_core_web_sm")
+    # Claude API (for NL→SQL)
+    ANTHROPIC_API_KEY: str = Field(default="", description="Anthropic API key for Claude")
+    CLAUDE_MODEL: str = Field(default="claude-sonnet-4-20250514", description="Claude model to use")
 
 
 # Create global settings instance
