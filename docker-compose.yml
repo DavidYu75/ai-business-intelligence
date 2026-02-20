@@ -53,8 +53,8 @@ services:
       - API_V1_STR=/api/v1
       - PROJECT_NAME=Real-Time BI Platform
       - BACKEND_CORS_ORIGINS=["http://localhost:3000", "http://frontend:3000"]
-      - HUGGINGFACE_CACHE_DIR=/app/models
-      - SPACY_MODEL=en_core_web_sm
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-sonnet-4-20250514}
     ports:
       - "8000:8000"
     volumes:
