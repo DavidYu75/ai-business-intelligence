@@ -10,7 +10,7 @@ packages = [{include = "app"}]
 python = "^3.11"
 fastapi = "^0.104.1"
 uvicorn = {extras = ["standard"], version = "^0.38.0"}
-python-multipart = "^0.0.6"
+python-multipart = "^0.0.22"
 sqlalchemy = "^2.0.23"
 asyncpg = "^0.30.0"
 alembic = "^1.12.1"
