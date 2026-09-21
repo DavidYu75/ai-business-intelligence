@@ -35,7 +35,7 @@ aiohttp==3.13.3
 # Configuration and Validation
 python-dotenv==1.0.0
 pydantic[email]==2.5.0
-pydantic-settings==2.11.0
+pydantic-settings==2.15.0
 
 # Observability
 structlog==23.2.0
