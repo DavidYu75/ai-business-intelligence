@@ -3,7 +3,7 @@
 # Development and test tooling lives in dev.txt.
 
 # Core FastAPI and ASGI
-fastapi==0.104.1
+fastapi==0.141.1
 uvicorn[standard]==0.40.0
 python-multipart==0.0.22
 
